@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Rate - Avaliações de Jogos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎮</span>
+                    <h1>Game Rate</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="header-search" placeholder="Buscar jogos...">
+                    <button class="btn btn-primary" id="header-search-btn">🔍</button>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#" id="home-link">Início</a></li>
+                        <li><a href="#" id="games-link">Jogos</a></li>
+                        <li><a href="#" id="collection-link">Coleção</a></li>
+                        <li><a href="#" id="profile-link">Perfil</a></li>
+                        <li class="extra-nav-item"><a href="#">Avaliações</a></li>
+                        <li class="extra-nav-item"><a href="#">Categorias</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <!-- <span id="login-status">Visitante</span> -->
+                    <button class="btn btn-outline" id="login-btn">Entrar</button>
+                    <button class="btn btn-primary" id="register-btn">Registrar</button>
+                    <button class="btn btn-outline" id="logout-btn" style="display: none;">Sair</button>
+                    <div class="user-profile">U</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Conteúdo da Home -->
+    <div id="home-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2>Avalie seus jogos favoritos</h2>
+                        <p>Compartilhe sua opinião, descubra novos jogos e conecte-se com outros gamers na maior comunidade de avaliação de jogos do Brasil.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-large" id="hero-register-btn">Criar uma conta grátis</button>
+                            <button class="btn btn-outline btn-large" id="hero-login-btn">Já tem conta? Entrar</button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="imagens/Jogo Elden Ring.jpeg" alt="Game Rate Platform" onerror="this.src='https://placehold.co/600x400?text=Game+Rate'">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Por que usar o Game Rate?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Avaliações Detalhadas</h3>
+                        <p>Compartilhe sua opinião e veja avaliações detalhadas de outros jogadores sobre os mais diversos jogos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Recomendações Personalizadas</h3>
+                        <p>Receba recomendações de jogos baseadas nas suas preferências e histórico de avaliações.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Coleção Pessoal</h3>
+                        <p>Mantenha um registro organizado dos jogos que você já jogou, está jogando ou deseja jogar.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Comunidade Ativa</h3>
+                        <p>Conecte-se com outros jogadores, discuta sobre jogos e descubra novas perspectivas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Conteúdo Principal - Feed -->
+    <main class="container" id="feed-content">
+        <div class="main-content">
+            <div class="feed">
+                <h2 class="section-title">Feed de Avaliações</h2>
+                <!-- Reviews will be dynamically loaded here by the MVC -->
+            </div>
+            
+            <!-- Barra lateral com recomendações -->
+            <aside class="sidebar">
+                <h3 class="section-title">Jogos Recomendados</h3>
+                <ul class="recommended-list">
+                    <!-- Recommended games will be dynamically loaded here by the MVC -->
+                </ul>
+            </aside>
+        </div>
+    </main>
+    
+    <!-- Conteúdo do Perfil (inicialmente oculto) -->
+    <div class="profile" id="profile-content">
+        <div class="profile-header">
+            <div class="profile-avatar" id="profile-avatar">U</div>
+            <div class="profile-actions">
+                <input type="file" id="profile-image-input" accept="image/*" style="display: none;">
+            </div>
+            <div class="profile-info">
+                <h2>Usuário GameRate</h2>
+                <p>Membro desde Maio 2023</p>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-value">42</span>
+                        <p>Avaliações</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">128</span>
+                        <p>Jogos na coleção</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">18</span>
+                        <p>Seguidores</p>
+                    </div>
+                </div>
+                <button class="btn btn-outline">Editar Perfil</button>
+            </div>
+        </div>
+        
+        <div class="profile-tabs">
+            <div class="tab active">Minhas Avaliações</div>
+            <div class="tab">Coleção</div>
+            <div class="tab">Estatísticas</div>
+        </div>
+        
+        <div class="user-reviews">
+            <!-- User reviews will be dynamically loaded here by the MVC -->
+        </div>
+    </div>
+    
+    <!-- Collection Page -->
+    <div id="collection-content" class="collection-page" style="display: none;">
+        <div class="container">
+            <div class="collection-header">
+                <h2 class="section-title">📚 Minha Coleção</h2>
+                <p class="collection-description">Jogos que você adicionou à sua coleção pessoal</p>
+                <div class="collection-stats">
+                    <div class="stat">
+                        <span class="stat-value">0</span>
+                        <p>Jogos na Coleção</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="collection-grid">
+                <!-- Collection games will be dynamically loaded here by the MVC -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="login-container">
+                <h3>Entrar no Game Rate</h3>
+                <div class="google-only-notice">
+                    <p><strong>🔒 Entrar no Game Rate</strong></p>
+                    <p>Use o mesmo email, nome de usuário e senha que você usou para criar sua conta.</p>
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="login-email" required placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" name="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </form>
+                <div class="register-link">
+                    <p>Ainda não tem uma conta? <a href="#" id="show-register">Registre-se</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="register-container">
+                <h3>Criar uma Conta</h3>
+                <div class="google-only-notice">
+                    <p><strong>📧 Criar sua conta no Game Rate</strong></p>
+                    <p>Preencha os dados abaixo para criar sua conta.</p>
+                </div>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Nome</label>
+                        <input type="text" id="register-name" name="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" name="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirmar Senha</label>
+                        <input type="password" id="register-confirm-password" name="register-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                </form>
+                <div class="login-link">
+                    <p>Já tem uma conta? <a href="#" id="show-login">Entrar</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Avaliar Jogo Modal -->
+    <div id="rating-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Avaliar Jogo</h3>
+            <div class="game-to-rate">
+                <img id="game-rating-image" src="" alt="Imagem do jogo" class="rating-game-image">
+                <h4 id="game-rating-title"></h4>
+                <p id="game-rating-platform"></p>
+            </div>
+            
+            <div class="rating-stars">
+                <p>Sua avaliação:</p>
+                <div class="stars-input">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                </div>
+                <span id="rating-value-display">0/5</span>
+            </div>
+            
+            <div class="review-input">
+                <label for="user-review">Sua opinião sobre o jogo:</label>
+                <textarea id="user-review" rows="4" placeholder="Compartilhe sua experiência com este jogo..."></textarea>
+            </div>
+            
+            <button id="submit-rating" class="btn btn-primary">Enviar Avaliação</button>
+        </div>
+    </div>
+    
+    <!-- Editar Avaliação Modal -->
+    <div id="edit-review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Editar Avaliação</h3>
+            <div class="game-to-rate">
+                <img id="edit-game-rating-image" src="" alt="Imagem do jogo" class="rating-game-image">
+                <h4 id="edit-game-rating-title"></h4>
+                <p id="edit-game-rating-platform"></p>
+            </div>
+            
+            <div class="rating-stars">
+                <p>Sua avaliação:</p>
+                <div class="stars-input" id="edit-stars-input">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                </div>
+                <span id="edit-rating-value-display">0/5</span>
+            </div>
+            
+            <div class="review-input">
+                <label for="edit-user-review">Sua opinião sobre o jogo:</label>
+                <textarea id="edit-user-review" rows="4" placeholder="Compartilhe sua experiência com este jogo..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button id="update-review" class="btn btn-primary">Atualizar Avaliação</button>
+                <button id="cancel-edit" class="btn btn-outline">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Review Detail Page -->
+    <div id="review-detail" class="review-detail" style="display: none;">
+        <div class="container">
+            <div class="review-detail-header">
+                <button class="btn btn-outline btn-back" id="back-to-feed">← Voltar</button>
+                <h2 class="section-title" id="review-game-title">Título do Jogo</h2>
+            </div>
+            
+            <div class="review-detail-content">
+                <div class="review-detail-main">
+                    <div class="review-detail-media">
+                        <img id="review-game-image" src="" alt="Imagem do jogo" class="review-detail-image">
+                    </div>
+                    <div class="review-detail-info">
+                        <div class="game-meta">
+                            <p id="review-game-platform" class="game-platform">Plataformas</p>
+                            <div class="rating review-rating">
+                                <div id="review-stars" class="stars">★★★★★</div>
+                                <span id="review-rating-value" class="rating-value">9.5/10</span>
+                            </div>
+                        </div>
+                        <p id="review-game-description" class="game-description">Descrição do jogo...</p>
+                        
+                        <div class="review-action">
+                            <button class="btn btn-primary" id="review-action-btn">Avaliar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-comments">
+                    <h3>Avaliações dos Usuários</h3>
+                    <div id="review-comments-list">
+                        <!-- Reviews will be dynamically loaded here by the MVC -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Games Catalog Page -->
+    <div id="games-content" class="games-catalog" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Jogos da Steam</h2>
+            
+            <div class="games-filter">
+                <div class="filter-options">
+                    <select id="platform-filter">
+                        <option value="">Todas as Plataformas</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation 5">PlayStation 5</option>
+                        <option value="PlayStation 4">PlayStation 4</option>
+                        <option value="Xbox Series X/S">Xbox Series X/S</option>
+                        <option value="Xbox One">Xbox One</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                    </select>
+                    
+                    <select id="genre-filter">
+                        <option value="">Todos os Gêneros</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Ação">Ação</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="FPS">FPS</option>
+                        <option value="Estratégia">Estratégia</option>
+                        <option value="Simulação">Simulação</option>
+                        <option value="Esportes">Esportes</option>
+                    </select>
+                    
+                    <select id="sort-options">
+                        <option value="rating">Classificação: Maior para Menor</option>
+                        <option value="rating-asc">Classificação: Menor para Maior</option>
+                        <option value="name">Nome: A-Z</option>
+                        <option value="name-desc">Nome: Z-A</option>
+                        <option value="release">Data de Lançamento: Mais Recente</option>
+                        <option value="release-asc">Data de Lançamento: Mais Antigo</option>
+                    </select>
+                </div>
+                
+                <div class="search-games">
+                    <input type="text" id="games-search" placeholder="Buscar jogos...">
+                    <button class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+            
+            <div class="games-grid">
+                <!-- Games will be dynamically loaded here by the MVC -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Contato</a>
+            </div>
+            <p>&copy; 2025 Game Rate. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Load scripts using ES6 modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

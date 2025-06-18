@@ -1,0 +1,14 @@
+{
+  "name": "game-rate",
+  "version": "1.0.0",
+  "description": "Game Rate - A game rating application with Steam integration",
+  "main": "api-server.js",
+  "scripts": {
+    "start": "node api-server.js",
+    "create-db": "node create-mock-db.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+} 
