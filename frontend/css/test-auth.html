@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Authentication System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        button { margin: 5px; padding: 8px 15px; }
+        .success { color: green; }
+        .error { color: red; }
+        pre { background: #f5f5f5; padding: 10px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔐 Test Authentication System</h1>
+    
+    <div class="test-section">
+        <h2>📊 Current Status</h2>
+        <button onclick="checkStatus()">Check Current Status</button>
+        <div id="status-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>👥 Registered Users</h2>
+        <button onclick="showUsers()">Show All Registered Users</button>
+        <button onclick="clearUsers()">Clear All Users (Reset)</button>
+        <div id="users-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🧪 Test Registration</h2>
+        <p>Test creating a new account:</p>
+        <input type="text" id="test-username" placeholder="Username" value="testuser">
+        <input type="email" id="test-email" placeholder="Email" value="test@gmail.com">
+        <input type="password" id="test-password" placeholder="Password" value="123456">
+        <button onclick="testRegister()">Test Register</button>
+        <div id="register-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔑 Test Login</h2>
+        <p>Test logging in with existing account:</p>
+        <input type="text" id="login-username" placeholder="Username" value="testuser">
+        <input type="email" id="login-email" placeholder="Email" value="test@gmail.com">
+        <input type="password" id="login-password" placeholder="Password" value="123456">
+        <button onclick="testLogin()">Test Login</button>
+        <div id="login-result"></div>
+    </div>
+    
+    <script type="module">
+        import UserModel from './js/models/UserModel.js';
+        
+        window.UserModel = UserModel;
+        
+        window.checkStatus = function() {
+            const statusDiv = document.getElementById('status-result');
+            const currentUser = UserModel.getCurrentUser();
+            const isLoggedIn = UserModel.isLoggedIn();
+            
+            statusDiv.innerHTML = `
+                <h3>Current Status:</h3>
+                <p><strong>Logged In:</strong> ${isLoggedIn}</p>
+                <p><strong>Current User:</strong></p>
+                <pre>${JSON.stringify(currentUser, null, 2)}</pre>
+            `;
+        };
+        
+        window.showUsers = function() {
+            const usersDiv = document.getElementById('users-result');
+            const users = UserModel.getAllUsers();
+            
+            usersDiv.innerHTML = `
+                <h3>Registered Users (${users.length}):</h3>
+                <pre>${JSON.stringify(users, null, 2)}</pre>
+            `;
+        };
+        
+        window.clearUsers = function() {
+            if (confirm('Are you sure you want to clear all registered users?')) {
+                localStorage.removeItem('registeredUsers');
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('reviews');
+                
+                document.getElementById('users-result').innerHTML = '<p class="success">✅ All users and data cleared!</p>';
+            }
+        };
+        
+        window.testRegister = async function() {
+            const resultDiv = document.getElementById('register-result');
+            const username = document.getElementById('test-username').value;
+            const email = document.getElementById('test-email').value;
+            const password = document.getElementById('test-password').value;
+            
+            try {
+                const user = await UserModel.register(username, email, password, true);
+                resultDiv.innerHTML = `
+                    <p class="success">✅ Registration successful!</p>
+                    <pre>${JSON.stringify(user, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ Registration failed: ${error.message}</p>`;
+            }
+        };
+        
+        window.testLogin = async function() {
+            const resultDiv = document.getElementById('login-result');
+            const username = document.getElementById('login-username').value;
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const user = await UserModel.login(username, email, password, false);
+                resultDiv.innerHTML = `
+                    <p class="success">✅ Login successful!</p>
+                    <pre>${JSON.stringify(user, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ Login failed: ${error.message}</p>`;
+            }
+        };
+        
+        // Auto-check status on load
+        setTimeout(() => {
+            window.checkStatus();
+            window.showUsers();
+        }, 500);
+    </script>
+</body>
+</html> 
